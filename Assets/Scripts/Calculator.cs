@@ -22,7 +22,7 @@ public class Calculator
     {
         CalculateTotalResistanceOfLoadedResistors();
         
-        electricalMeasurementsOfCircuit.CircuitAmperage = MathF.Round(_totalAmperage / (_totalResistance + _totalResistanceOfLoadedResistors) * 1000, 2);
+        electricalMeasurementsOfCircuit.CircuitAmperage = MathF.Round(_totalAmperage / (_totalResistance + _totalResistanceOfLoadedResistors) * 1000, 0);
         electricalMeasurementsOfCircuit.CircuitVoltage = MathF.Round(_totalResistanceOfLoadedResistors * electricalMeasurementsOfCircuit.CircuitAmperage / 1000, 3);
     }
 
@@ -60,13 +60,14 @@ public class Calculator
     private void CalculateTotalResistanceOfLoadedResistors()
     {
         var conductivity = 0f;
-        
+
         for (var i = 0; i < _variant.LoadedResistors.Length; i++)
         {
             var keyStatus = _variant.Keys[i].IsKeyOff ? 0 : 1;
             conductivity += 1 / _variant.LoadedResistors[i] * keyStatus;
         }
 
-        _totalResistanceOfLoadedResistors = 1 / conductivity;
+        var keyStatusOfKeyK = _variant.Keys[9].IsKeyOff ? 0 : 1;
+        _totalResistanceOfLoadedResistors = keyStatusOfKeyK * MathF.Pow(10, 10) + 1 / conductivity;
     }
 }
