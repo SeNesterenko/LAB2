@@ -1,9 +1,12 @@
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private UnityEvent _variantChanged;
+    
     [SerializeField] private Variant[] _variants;
     [SerializeField] private TMP_Dropdown _dropdown;
     [SerializeField] private Scheme _scheme;
@@ -27,5 +30,7 @@ public class GameManager : MonoBehaviour
     {
         _scheme.Initialize(_variants[index]);
         _calculatorController.Initialize(_variants[index]);
+        
+        _variantChanged.Invoke();
     }
 }

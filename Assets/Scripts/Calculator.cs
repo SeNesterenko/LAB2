@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class Calculator
 {
@@ -67,7 +68,7 @@ public class Calculator
             conductivity += 1 / _variant.LoadedResistors[i] * keyStatus;
         }
 
-        var keyStatusOfKeyK = _variant.Keys[9].IsKeyOff ? 0 : 1;
-        _totalResistanceOfLoadedResistors = keyStatusOfKeyK * MathF.Pow(10, 10) + 1 / conductivity;
+        var keyStatusOfKeyK = _variant.Keys[8].IsKeyOff ? 0 : 1;
+        _totalResistanceOfLoadedResistors = 1 / (keyStatusOfKeyK * MathF.Pow(10, 10) + conductivity);
     }
 }

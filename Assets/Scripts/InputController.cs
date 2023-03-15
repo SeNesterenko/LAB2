@@ -46,15 +46,10 @@ public class InputController : MonoBehaviour
         {
             _buttonClicked.Invoke(7);
         }
-        
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            _buttonClicked.Invoke(8);
-        }
-        
+
         if (Input.GetKeyDown(KeyCode.K))
         {
-            _buttonClicked.Invoke(9);
+            _buttonClicked.Invoke(8);
         }
     }
 }
