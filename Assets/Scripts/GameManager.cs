@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Scheme _scheme;
     [SerializeField] private CalculatorController _calculatorController;
 
+    private float _randomValue;
+
     private void Start()
     {
         foreach (var variant in _variants)
@@ -20,8 +22,10 @@ public class GameManager : MonoBehaviour
         }
 
         _dropdown.RefreshShownValue();
-        
+        _randomValue = Random.Range(0.98f, 1.02f);
         ChangeVariant(0);
+        
+        Debug.Log("GameManager " + _randomValue);
     }
 
     // Call it when Variant has changed from Unity editor
@@ -29,7 +33,7 @@ public class GameManager : MonoBehaviour
     public void ChangeVariant(int index)
     {
         _scheme.Initialize(_variants[index]);
-        _calculatorController.Initialize(_variants[index]);
+        _calculatorController.Initialize(_variants[index], _randomValue);
         
         _variantChanged.Invoke();
     }

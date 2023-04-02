@@ -11,18 +11,19 @@ public class Calculator
     private float _totalResistanceOfLoadedResistors;
     private float _totalAmperage;
     private float _totalResistance;
-    
+    private readonly float _randomValue;
 
-    public Calculator(Variant variant)
+    public Calculator(Variant variant, float randomValue)
     {
         _variant = variant;
         _resistors = _variant.Resistors;
+        _randomValue = randomValue;
     }
 
     public void Calculate(ElectricalMeasurementsOfCircuit electricalMeasurementsOfCircuit)
     {
         CalculateTotalResistanceOfLoadedResistors();
-        
+        Debug.Log(_randomValue);
         electricalMeasurementsOfCircuit.CircuitAmperage = MathF.Round(_totalAmperage / (_totalResistance + _totalResistanceOfLoadedResistors) * 1000, 0);
         electricalMeasurementsOfCircuit.CircuitVoltage = MathF.Round(_totalResistanceOfLoadedResistors * electricalMeasurementsOfCircuit.CircuitAmperage / 1000, 3);
     }
@@ -65,7 +66,7 @@ public class Calculator
         for (var i = 0; i < _variant.LoadedResistors.Length; i++)
         {
             var keyStatus = _variant.Keys[i].IsKeyOff ? 0 : 1;
-            conductivity += 1 / _variant.LoadedResistors[i] * keyStatus;
+            conductivity += 1 / (_variant.LoadedResistors[i] * _randomValue) * keyStatus;
         }
 
         var keyStatusOfKeyK = _variant.Keys[8].IsKeyOff ? 0 : 1;

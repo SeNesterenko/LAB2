@@ -7,10 +7,10 @@ public class CalculatorController : MonoBehaviour
     private Variant _variant;
     private Calculator _calculator;
     private ElectricalMeasurementsOfCircuit _electricalMeasurementsOfCircuit;
-    
-    public void Initialize(Variant variant)
+
+    public void Initialize(Variant variant, float randomValue)
     {
-        _calculator = new Calculator(variant);
+        _calculator = new Calculator(variant, randomValue);
         _calculator.CalculateTotalResistance();
         _electricalMeasurementsOfCircuit = new ElectricalMeasurementsOfCircuit();
     }
