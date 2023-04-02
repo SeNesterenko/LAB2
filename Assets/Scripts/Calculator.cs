@@ -23,7 +23,6 @@ public class Calculator
     public void Calculate(ElectricalMeasurementsOfCircuit electricalMeasurementsOfCircuit)
     {
         CalculateTotalResistanceOfLoadedResistors();
-        Debug.Log(_randomValue);
         electricalMeasurementsOfCircuit.CircuitAmperage = MathF.Round(_totalAmperage / (_totalResistance + _totalResistanceOfLoadedResistors) * 1000, 0);
         electricalMeasurementsOfCircuit.CircuitVoltage = MathF.Round(_totalResistanceOfLoadedResistors * electricalMeasurementsOfCircuit.CircuitAmperage / 1000, 3);
     }

@@ -24,8 +24,6 @@ public class GameManager : MonoBehaviour
         _dropdown.RefreshShownValue();
         _randomValue = Random.Range(0.98f, 1.02f);
         ChangeVariant(0);
-        
-        Debug.Log("GameManager " + _randomValue);
     }
 
     // Call it when Variant has changed from Unity editor
